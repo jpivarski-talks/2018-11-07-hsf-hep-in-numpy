@@ -282,10 +282,33 @@ There are also many users who are just trying to do analysis without ROOT:
 \end{columns}
 \end{frame}
 
-
-
-\end{document}
-
 %% ``So, in my case, the arrays function are equivalent to numpy load to native format. Very impressive!!! Kudos!!!''
 
 %% ``Also, I'm very excited to see what you do with jagged arrays. They caused me a lot of problems when I started my work with numpy several years ago. I'm happy to know someone is formalizing a way for them to play well with numpy. thanks again for all your work!''
+
+\begin{frame}{uproot}
+\vspace{0.4 cm}
+Based on the observation that:
+\begin{itemize}
+\item a Numpy analysis operates on one column of data at a time, and
+\item data in a ROOT file are already arranged in columns.
+\end{itemize}
+
+\vspace{0.25 cm}
+Transforming columnar bytes on disk into event records back into columnar arrays is undesirable extra work. Dropping it makes up for seeking to the positions of the columnar arrays using slow Python, {\it if the arrays (baskets) are large.}
+
+\begin{columns}
+\column{0.5\linewidth}
+\includegraphics[width=\linewidth]{root-none-muon.png}
+
+\column{0.5\linewidth}
+\includegraphics[width=\linewidth]{rootnumpy-none-muon.png}
+\end{columns}
+\end{frame}
+
+
+
+
+
+
+\end{document}
