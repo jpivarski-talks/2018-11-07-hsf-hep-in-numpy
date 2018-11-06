@@ -149,14 +149,57 @@ Most astronomy, data science, etc.\ fits one of these cases.
 \begin{frame}{Three surmountable challenges}
 \large
 \vspace{0.5 cm}
-\begin{itemize}\setlength{\itemsep}{1 cm}
+\begin{center}
+\begin{minipage}{0.75\linewidth}
+\begin{enumerate}\setlength{\itemsep}{1 cm}
 \item HEP software stacks and conventions were developed {\it before} the Numpy ecosystem and have to be retrofitted to communicate easily.
 
 \item HEP analysis relies heavily on nested data: each event may have a different number of particles.
 
-\item HEP analysis must be performed on TB of ntuples or PB of centrally produced data with thousands of users hitting the same system or files.
+\item HEP analysis must be performed on TB of ntuples or PB of centrally produced data with thousands of users hitting the same system/files.
+\end{enumerate}
+\end{minipage}\mbox{\hspace{1 cm}}
+\end{center}
+\end{frame}
+
+\begin{frame}{}
+\LARGE
+\vspace{1 cm}
+\begin{center}
+\textcolor{darkblue}{1. HEP software $\leftrightarrow$ Numpy}
+\end{center}
+\end{frame}
+
+\begin{frame}{An active area for a long time and now accelerating}
+\vspace{0.5 cm}
+\begin{itemize}\setlength{\itemsep}{0.5 cm}
+\item The PyROOT project started in 2003, just before release 2.3 of \raisebox{-0.2\height}{\includegraphics[height=\baselineskip]{old-python-logo.png}}.
+
+Every C++ class/function is accessible in Python, at a performance price.
+
+\item Many small HEP packages address specific access issues:
+
+\vspace{0.05 cm}
+\begin{itemize}\setlength{\itemsep}{0.05 cm}
+\item PyMinuit: extracted from my HEP analysis and open sourced in 2005
+\item iminuit: modern version, used in astronomy
+\item rootpy: more ``Pythonic'' interface overlaid on PyROOT
+\item root\_numpy: faster bindings compiled into C++
+\item 81 packages matching ``HEP'' in PyPI, 247 in GitHub\ldots
+\end{itemize}
+
+\item The ROOT team is actively adding ``Pythonizations'' to PyROOT for a more Pythonic interface and also direct-to-Numpy access.
+
+\vspace{0.1 cm}
+\begin{itemize}\setlength{\itemsep}{0.1 cm}
+\item {\tt\small ttree.AsMatrix()}: access TTree data in Python as Numpy
+\item RDataFrame sources and sinks to include Numpy arrays and Arrow
+\end{itemize}
 \end{itemize}
 \end{frame}
+
+
+
 
 
 \end{document}
