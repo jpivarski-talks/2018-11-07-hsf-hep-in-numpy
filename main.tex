@@ -431,12 +431,144 @@ Parents:           \tabto{3.5 cm}{\ttfamily\verb|[ |\textcolor{darkgreen}{0, 0, 
 \vspace{0.5 cm}
 Content $+$ offsets is lossless, compact, and efficient for randomly accessing data.
 
-\vspace{0.25 cm}
+\vspace{0.1 cm}
 Content $+$ parents $+$ total length is lossless, and it makes reduction operations fast.
+
+\vspace{0.1 cm}
+Jagged arrays and other primitives can be composed to make any data structure.
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}[fragile]{Array programming: paradigm like object oriented, functional, etc.}
+\vspace{0.15 cm}
+\hfill \includegraphics[height=2.75 cm]{apl-timeline.pdf}
 
+\vspace{-2.15 cm}
+{\bf\large Array programming: Matlab/R/Numpy}
+
+\vspace{0.5 cm}
+Expresses regular operations over \\ rectangular data structures in shorthand.
+
+\vspace{0.25 cm}
+\begin{itemize}\setlength{\itemsep}{0.15 cm}
+\item Multidimensional slices: \tabto{5.5 cm}{\small \mintinline{python}{rgb_pixels[0, 50:100, ::3]}}
+\item Elementwise operations: \tabto{5.5 cm}{\small \mintinline{python}{all_pz = all_pt * sinh(all_eta)}}
+\item Broadcasting: \tabto{5.5 cm}{\small \mintinline{python}{all_phi - 2*pi}}
+\item Masking (list compaction): \tabto{5.5 cm}{\small \mintinline{python}{data[trigger & (pt > 40)]}}
+\item Fancy indexing (gather/scatter): \tabto{5.5 cm}{\small \mintinline{python}{all_eta[argsort(all_pt)]}}
+\item Row/column commutativity \tabto{5.5 cm}{\small \mintinline{python}{table["column"][7]} (row 7 of column array)}
+
+(hides AoS $\leftrightarrow$ SoA): \tabto{5.5 cm}{\small \mintinline{python}{table[7]["column"]} (field of row tuple 7)}
+\item Array reduction: \tabto{5.5 cm}{\small \mintinline{python}{array.sum()}} $\to$ scalar
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Extension of array programming to non-rectangular data}
+\vspace{0.1 cm}
+\begin{columns}
+\column{1.05\linewidth}
+\begin{itemize}\setlength{\itemsep}{0.15 cm}
+\item Multidimensional slices: \tabto{5.5 cm}{\small \mintinline{python}{events["jets"][:, 0]}} $\to$ first jet per event
+\item Elementwise operations: \tabto{5.5 cm}{\small \mintinline{python}{jetpt * sinh(jeteta)}} $\to$ \mbox{keep jagged structure\hspace{-1 cm}}
+\item Broadcasting: \tabto{5.5 cm}{\small \mintinline{python}{jetphi - metphi}} $\to$ expand {\small \mintinline{python}{metphi}} from
+
+\tabto{5.5 cm}one-per-event to one-per-jet before operation
+
+\item Masking (list compaction): \tabto{5.5 cm}{\small \mintinline{python}{data[trigger]}} $\to$ drop whole events
+
+\tabto{5.5 cm}{\small \mintinline{python}{data[jetpt > 40]}} $\to$ drop jets from events
+
+\item Fancy indexing (gather/scatter): \tabto{5.5 cm}{\small \mintinline{python}{a = argmax(jetpt)}} $\to$ \mbox{\small \mintinline{python}{[[2], [], [1], [4]]}\hspace{-0.5 cm}}
+
+\tabto{5.5 cm}{\small \mintinline{python}{jeteta[a]}} $\to$ \mbox{\small \mintinline{python}{[[3.6], [], [-1.2], [0.4]]}\hspace{-0.5 cm}}
+
+\item Row/column commutativity \tabto{5.5 cm}{\small \mintinline{python}{events["jets"]["pt"][7, 1]}} \mbox{(all the same)\hspace{-0.5 cm}}
+
+(project jagged tables to \tabto{5.5 cm}{\small \mintinline{python}{events["jets"][7]["pt"][1]}}
+
+jagged arrays before indexing): \tabto{5.5 cm}{\small \mintinline{python}{events[7]["jets"]["pt"][1]}}
+
+\tabto{5.5 cm}{\small \mintinline{python}{events["jets"][7, 1]["pt"]}}
+
+\tabto{5.5 cm}{\small \mintinline{python}{events[7]["jets"][1]["pt"]}}
+
+\item Jagged array reduction: \tabto{5.5 cm}{\small \mintinline{python}{jetpt.max()}} $\to$ array of max jet $p_T$ per event
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Examples from a recent tutorial}
+\scriptsize
+\vspace{0.25 cm}
+\begin{columns}
+\column{1.02\linewidth}
+\begin{minted}{python}
+>>> import awkward
+>>> a = awkward.JaggedArray.fromiter([[   1,     2,    3], [], [    4,    5]])
+>>> b = awkward.JaggedArray.fromiter([[  10,    20,   30], [], [   40,   50]])
+>>> m = awkward.JaggedArray.fromiter([[True, False, True], [], [False, True]])
+>>> flat  = numpy.array([  100,  200,  300])
+>>> mflat = numpy.array([False, True, True])
+>>> i = awkward.JaggedArray.fromiter([[2, 1], [], [1, 1, 0, 1]])
+
+>>> a + b                                     # Elementwise operations
+<JaggedArray [[11 22 33] [] [44 55]] at 7b229f329908>
+
+>>> a + flat                                  # Broadcasting
+<JaggedArray [[101 102 103] [] [304 305]] at 7b229f7105c0>
+
+>>> a[m]                                      # Masking by jagged (selects particles)
+<JaggedArray [[1 3] [] [5]] at 7b229f3290f0>
+
+>>> a[mflat]                                  # Masking by flat (selects events)
+<JaggedArray [[] [4 5]] at 7b229f3295c0>
+
+>>> a[i]                                      # Fancy indexing
+<JaggedArray [[3 2] [] [5 5 4 5]] at 7b229f3299b0>
+
+>>> a.sum()                                   # Jagged reduction
+array([6, 0, 9])
+\end{minted}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{We can even solve problems with combinatorics}
+\vspace{0.35 cm}
+{\normalsize\bf Procedural HEP:} selecting the ``best'' leptoquark candidate
+
+\scriptsize
+\begin{minted}{python}
+leptoquarks = []
+for event in dataset:
+    best = None
+    for jet in event.jets:
+        for lepton in event.leptons:
+            if cut(jet, lepton):
+                leptoquark = jet + lepton        # Lorentz vector + operator
+                if best is None or quality(leptoquark) > quality(best):
+                    best = leptoquark
+    if best is not None:
+        leptoquarks.append(best)
+\end{minted}
+
+\vspace{0.5 cm}
+{\normalsize\bf Jagged array solution:}
+
+\scriptsize
+\begin{minted}{python}
+pairs = events["jets"].cross(events["leptons"])  # cross-join within events
+goodpairs = pairs[cut(pairs["0"], pairs["1"])]   # into pairs["0"] and ["1"]
+candidates = pairs["0"] + pairs["1"]             # Lorentz vector + operator
+best = candidates[quality(candidates).argmax()]  # best indexes, then objects
+leptoquarks = best.flatten()                     # reduce to flat array
+\end{minted}
+\end{frame}
+
+\begin{frame}{Array programming has competitive performance}
+\vspace{0.25 cm}
+It isn't just a crutch for slow Python. Efficiency is from SIMD-like data organization.
+
+\vspace{0.4 cm}
+\includegraphics[width=\linewidth]{logscales.pdf}
 \end{frame}
 
 \end{document}
