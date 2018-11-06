@@ -295,7 +295,7 @@ Based on the observation that:
 \end{itemize}
 
 \vspace{0.25 cm}
-Transforming columnar bytes on disk into event records back into columnar arrays is undesirable extra work. Dropping it makes up for seeking to the positions of the columnar arrays using slow Python, {\it if the arrays (baskets) are large.}
+Transforming columnar bytes on disk into event records back into columnar arrays is undesirable extra work. Dropping that step makes up for seeking to the positions of the columnar arrays using slow Python, {\it if the arrays (baskets) are large.}
 
 \begin{columns}
 \column{0.5\linewidth}
@@ -314,7 +314,7 @@ Transforming columnar bytes on disk into event records back into columnar arrays
 Pythonic interfaces to objects extracted from ROOT (e.g.\ histograms, Lorentz vectors) have been moved to uproot-methods, to evolve on a different schedule and accept more user-contributed pull requests.
 \end{frame}
 
-\begin{frame}[fragile]{uproot example}
+\begin{frame}[fragile]{uproot example: reading and manipulating data}
 \small
 \vspace{0.1 cm}
 \begin{columns}
@@ -340,6 +340,49 @@ array([90.22779777, 74.74654928, ..., 85.44384208, 75.96066262])
 \end{minted}
 \end{columns}
 \end{frame}
+
+\begin{frame}[fragile]{uproot example: writing histograms}
+\large
+\vspace{0.25 cm}
+uproot version 3 has write support, but (currently) only for histograms.
+
+\small
+\begin{minted}{python}
+>>> import uproot
+>>> import numpy
+>>> file = uproot.recreate("tmp.root")
+>>> # give a Numpy histogram a name and save it using file as a dict
+>>> file["name"] = numpy.histogram(numpy.random.normal(0, 1, 100000))
+\end{minted}
+
+\vspace{1 cm}
+\large
+Read it back in ROOT:
+
+\small
+\begin{minted}{python}
+>>> import ROOT
+>>> file = ROOT.TFile("tmp.root")
+>>> hist = file.Get("name")
+>>> hist.Draw()
+\end{minted}
+
+\vspace{-3.5 cm}
+\hfill \includegraphics[width=0.5\linewidth]{root-hist.png}
+\end{frame}
+
+\begin{frame}{Future direction}
+\vspace{0.5 cm}
+
+uproot does its one thing well: just I/O. No major updates forseen for {\it reading,} only bug-fixes and handling corner-case files that users send to me.
+
+\vspace{0.5 cm}
+For {\it writing,} however, I plan to continue to work with Pratyush Das (who added histogram-writing as a DIANA-HEP fellow) to add support for writing simple TTrees on a 6--12~month timescale.
+
+\vspace{0.5 cm}
+Small, interacting tools need common protocols. ROOT defines file and C++ protocols; the Scikit-HEP developers are designing in-memory and language-neutral protocols for fit distributions (following SciPy conventions), cost function builders, pseudoexperiments, and histograms (I'm testing Flatbuffers for a wire protocol).
+\end{frame}
+
 
 
 
