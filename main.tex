@@ -80,6 +80,11 @@
 \includegraphics[width=\linewidth]{python-r-cpp-googletrends-machinelearning.png}
 \end{frame}
 
+\begin{frame}{In case we need a ``Motivations'' section}
+\vspace{0.5 cm}
+\includegraphics[width=\linewidth]{root-spark-pandas-google-trends.png}
+\end{frame}
+
 \begin{frame}{Stealing from Jake VanderPlas's {\it Unexpected Effectiveness} talk}
 \vspace{0.25 cm}
 \begin{columns}[b]
@@ -98,20 +103,53 @@
 
 \begin{frame}{The other sciences are doing it, so why can't I?}
 \vspace{0.3 cm}
-\begin{columns}
+\begin{columns}[b]
 \column{0.59\linewidth}
 \includegraphics[width=\linewidth]{lsst-notebook.png}
 
 \column{0.41\linewidth}
 \begin{itemize}\setlength{\itemsep}{0.5 cm}
-\item LIGO full analysis in \\ Numpy $+$ Jupyter $+$ Binder \\ $\to$ you can run it yourself.
+\item LIGO full analysis in \\ Numpy $+$ Jupyter $+$ Binder \\ $\to$ you can run all the signal processing yourself without downloading anything.
 \item LSST is adopting Python $+$ Jupyter as the general astronomer's interface.
 \item XENON-nT is doing their full stack in Python $+$ Numpy.
 \item (easy to find examples\ldots)
 \end{itemize}
+
+\vspace{0.75 cm}
 \end{columns}
 \end{frame}
 
+\begin{frame}{Why not indeed?}
+\vspace{0.5 cm}
+Numpy allowed Python to fill a niche occupied by MATLAB and R: transforming, filtering, signal processing, and machine learning on GB's of rectangular array data.
+
+\vspace{0.75 cm}
+\begin{columns}[t]
+\column{0.1\linewidth}
+
+\column{0.3\linewidth}
+Python for loops are expressive but not fast.
+
+\vspace{0.25 cm}
+Good for small, complex processing that needs a fully nested object model.
+
+\column{0.3\linewidth}
+Numpy arrays are fast but not expressive.
+
+\vspace{0.25 cm}
+Good for biggish, more regular processing (including ML).
+
+\column{0.1\linewidth}
+\end{columns}
+
+\vspace{0.75 cm}
+Most astronomy, data science, etc.\ fits one of these cases.
+\end{frame}
+
+\begin{frame}{}
+
+
+\end{frame}
 
 
 \end{document}
