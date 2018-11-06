@@ -286,7 +286,7 @@ There are also many users who are just trying to do analysis without ROOT:
 
 %% ``Also, I'm very excited to see what you do with jagged arrays. They caused me a lot of problems when I started my work with numpy several years ago. I'm happy to know someone is formalizing a way for them to play well with numpy. thanks again for all your work!''
 
-\begin{frame}{uproot}
+\begin{frame}{uproot implementation philosophy}
 \vspace{0.4 cm}
 Based on the observation that:
 \begin{itemize}
@@ -312,6 +312,33 @@ Transforming columnar bytes on disk into event records back into columnar arrays
 
 \vspace{0.5 cm}
 Pythonic interfaces to objects extracted from ROOT (e.g.\ histograms, Lorentz vectors) have been moved to uproot-methods, to evolve on a different schedule and accept more user-contributed pull requests.
+\end{frame}
+
+\begin{frame}[fragile]{uproot example}
+\small
+\vspace{0.1 cm}
+\begin{columns}
+\column{1.1\linewidth}
+\begin{minted}{python}
+>>> import uproot
+>>> tree = uproot.open("HZZ-objects.root")["events"]   # dict-like
+>>> array = tree.array("muonp4")
+
+>>> array                                # all events
+<JaggedArray [[TLorentzVector(-52.899, -11.655, -8.1608, 54.779)
+               TLorentzVector(37.738, 0.69347, -11.308, 39.402)] ...]>
+>>> array[0][1]                          # second particle in first event
+TLorentzVector(37.738, 0.69347, -11.308, 39.402)
+
+>>> hastwo = (array.counts >= 2)         # events with at least two muons
+>>> leading = array[hastwo, 0]           # mask and select first
+>>> subleading = array[hastwo, 1]        # mask and select second
+
+>>> candidates = leading + subleading    # Lorentz vector sum across all
+>>> candidates.mass                      # compute mass for all
+array([90.22779777, 74.74654928, ..., 85.44384208, 75.96066262])
+\end{minted}
+\end{columns}
 \end{frame}
 
 
