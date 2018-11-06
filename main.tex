@@ -250,10 +250,44 @@ Every C++ class/function is accessible in Python, at a performance price.
 \end{columns}
 \end{frame}
 
+\begin{frame}{uproot}
+\vspace{0.25 cm}
+\hfill \mbox{\includegraphics[height=4.5 cm]{weeks_byversion.pdf}\hspace{-1 cm}}
 
+\vspace{-4.25 cm}
+Originally, a two-week project to access ROOT \\ data in a columnar form more quickly, intended \\ as a backend for a future query service.
 
+\vspace{0.35 cm}
+Then I got a lot of feedback from physicists trying \\ to get their data into machine learning libraries.
 
+\vspace{0.35 cm}
+So I pivoted and started focusing more on Numpy.
+
+\vspace{0.35 cm}
+There are also many users who are just trying to do analysis without ROOT:
+
+\vspace{0.15 cm}
+\scriptsize
+\begin{columns}
+\column{0.47\linewidth}
+``Great package by the way, the ROOT-independency makes data analysis a lot more flexible.''
+
+\vspace{0.25 cm}
+``Now I'll go through the jagged array tutorial and after that I'll write a wrapper library to make our data accessible without ROOT and any other huge, uncomfortable dependencies, halleluja!''
+
+\column{0.46\linewidth}
+
+``My particular love of this package is driven by moving away from root as early in my processing as possible and enabling me to use tools I am more comfortable with. I'm not a HEP guy but a space physics guy using geant for instrument responses.''
+
+\vspace{0.25 cm}
+``Thank you for all of your work with this, being able to load root files without ROOT is wonderful!''
+\end{columns}
+\end{frame}
 
 
 
 \end{document}
+
+%% ``So, in my case, the arrays function are equivalent to numpy load to native format. Very impressive!!! Kudos!!!''
+
+%% ``Also, I'm very excited to see what you do with jagged arrays. They caused me a lot of problems when I started my work with numpy several years ago. I'm happy to know someone is formalizing a way for them to play well with numpy. thanks again for all your work!''
