@@ -32,7 +32,7 @@
 \definecolor{darkgreen}{rgb}{0,0.6,0}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
-\title[2018-11-07-hsf-hep-in-numpy]{HEP in the Numpy ecosystem}
+\title[2018-11-07-hsf-hep-in-numpy]{HEP analysis in the Numpy ecosystem}
 \author{Jim Pivarski}
 \institute{Princeton University -- DIANA-HEP}
 \date{November 7, 2018}
@@ -56,9 +56,62 @@
 
 % START START START START START START START START START START START START START
 
-\begin{frame}{First slide}
-\vspace{0.5 cm}
-HERE
+\begin{frame}{In case we need a ``Motivations'' section}
+\vspace{0.25 cm}
+\begin{center}
+\includegraphics[width=0.8\linewidth]{pypl-popularity.png}
+\end{center}
+\textcolor{blue}{\scriptsize\url{http://pypl.github.io/PYPL.html}}
 \end{frame}
+
+\begin{frame}{In case we need a ``Motivations'' section}
+\vspace{0.5 cm}
+\includegraphics[width=\linewidth]{python-r-cpp-googletrends-data.png}
+
+\vspace{1 cm}
+\includegraphics[width=\linewidth]{python-r-cpp-googletrends-dataset.png}
+\end{frame}
+
+\begin{frame}{In case we need a ``Motivations'' section}
+\vspace{0.5 cm}
+\includegraphics[width=\linewidth]{python-r-cpp-googletrends-datascience.png}
+
+\vspace{1 cm}
+\includegraphics[width=\linewidth]{python-r-cpp-googletrends-machinelearning.png}
+\end{frame}
+
+\begin{frame}{Stealing from Jake VanderPlas's {\it Unexpected Effectiveness} talk}
+\vspace{0.25 cm}
+\begin{columns}[b]
+\column{0.75\linewidth}
+\only<1>{\includegraphics[height=7.8 cm]{shells-1.png}}
+\only<2>{\includegraphics[height=7.8 cm]{shells-2.png}}
+\only<3>{\includegraphics[height=7.8 cm]{shells-3.png}}
+\only<4>{\includegraphics[height=7.8 cm]{shells-4.png}}
+\only<5>{\includegraphics[height=7.8 cm]{shells-5.png}\vspace{0.5 cm}}
+
+\column{0.25\linewidth}
+\includegraphics[width=\linewidth]{unreasonable-effectiveness.png}
+\vspace{5.3 cm}
+\end{columns}
+\end{frame}
+
+\begin{frame}{The other sciences are doing it, so why can't I?}
+\vspace{0.3 cm}
+\begin{columns}
+\column{0.59\linewidth}
+\includegraphics[width=\linewidth]{lsst-notebook.png}
+
+\column{0.41\linewidth}
+\begin{itemize}\setlength{\itemsep}{0.5 cm}
+\item LIGO full analysis in \\ Numpy $+$ Jupyter $+$ Binder \\ $\to$ you can run it yourself.
+\item LSST is adopting Python $+$ Jupyter as the general astronomer's interface.
+\item XENON-nT is doing their full stack in Python $+$ Numpy.
+\item (easy to find examples\ldots)
+\end{itemize}
+\end{columns}
+\end{frame}
+
+
 
 \end{document}
