@@ -185,7 +185,7 @@ Every C++ class/function is accessible in Python, at a performance price.
 \item iminuit: modern version, used in astronomy
 \item rootpy: more ``Pythonic'' interface overlaid on PyROOT
 \item root\_numpy: faster bindings compiled into C++
-\item \textcolor{darkorange}{\bf 81} packages matching ``HEP'' in PyPI, \textcolor{darkorange}{\bf 247} in GitHub\ldots
+\item {\bf 81} packages matching ``HEP'' in PyPI; {\bf 247} with ``HEP'' and Python in GitHub\ldots
 \end{itemize}
 
 \item The ROOT team is actively adding ``Pythonizations'' to PyROOT for a more Pythonic interface and also direct-to-Numpy access.
@@ -251,36 +251,34 @@ Every C++ class/function is accessible in Python, at a performance price.
 \end{frame}
 
 \begin{frame}{uproot}
-\vspace{0.25 cm}
 \hfill \mbox{\includegraphics[height=4.5 cm]{weeks_byversion.pdf}\hspace{-1 cm}}
 
 \vspace{-4.25 cm}
-Originally, a two-week project to access ROOT \\ data in a columnar form more quickly, intended \\ as a backend for a future query service.
+Originally, it was a two-week project to access \\ ROOT data in a columnar form more quickly, \\ intended as a backend for a future query service.
 
 \vspace{0.35 cm}
 Then I got a lot of feedback from physicists trying \\ to get their data into machine learning libraries.
 
 \vspace{0.35 cm}
-So I pivoted and started focusing more on Numpy.
+So I pivoted, generalized it (2.x), and presented it \\ as an end-user product.
 
 \vspace{0.35 cm}
 There are also many users who are just trying to do analysis without ROOT:
 
-\vspace{0.15 cm}
 \scriptsize
 \begin{columns}
 \column{0.47\linewidth}
-``Great package by the way, the ROOT-independency makes data analysis a lot more flexible.''
+\textcolor{darkgray}{``Great package by the way, the ROOT-independency makes data analysis a lot more flexible.''}
 
 \vspace{0.25 cm}
-``Now I'll go through the jagged array tutorial and after that I'll write a wrapper library to make our data accessible without ROOT and any other huge, uncomfortable dependencies, halleluja!''
+\textcolor{darkgray}{``Now I'll go through the jagged array tutorial and after that I'll write a wrapper library to make our data accessible without ROOT and any other huge, uncomfortable dependencies, halleluja!''}
 
 \column{0.46\linewidth}
 
-``My particular love of this package is driven by moving away from root as early in my processing as possible and enabling me to use tools I am more comfortable with. I'm not a HEP guy but a space physics guy using geant for instrument responses.''
+\textcolor{darkgray}{``My particular love of this package is driven by moving away from root as early in my processing as possible and enabling me to use tools I am more comfortable with. I'm not a HEP guy but a space physics guy using geant for instrument responses.''}
 
 \vspace{0.25 cm}
-``Thank you for all of your work with this, being able to load root files without ROOT is wonderful!''
+\textcolor{darkgray}{``Thank you for all of your work with this, being able to load root files without ROOT is wonderful!''}
 \end{columns}
 \end{frame}
 
