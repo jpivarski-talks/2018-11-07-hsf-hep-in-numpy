@@ -22,6 +22,7 @@
 \usepackage{minted}
 \usepackage[thicklines]{cancel}
 \usepackage{fancyvrb}
+\usepackage{tabto}
 
 \xdefinecolor{dianablue}{rgb}{0.18,0.24,0.31}
 \xdefinecolor{darkblue}{rgb}{0.1,0.1,0.7}
@@ -383,7 +384,59 @@ For {\it writing,} however, I plan to continue to work with Pratyush Das (who ad
 Small, interacting tools need common protocols. ROOT defines file and C++ protocols; the Scikit-HEP developers are designing in-memory and language-neutral protocols for fit distributions (following SciPy conventions), cost function builders, pseudoexperiments, and histograms (I'm testing Flatbuffers for a wire protocol).
 \end{frame}
 
+\begin{frame}{}
+\LARGE
+\vspace{1 cm}
+\begin{center}
+\textcolor{darkblue}{2. HEP analysis and nested data structures}
+\end{center}
+\end{frame}
 
+\begin{frame}{HEP datasets are awkward}
+\vspace{0.5 cm}
+Most non-HEP data analysis tools (including ML) require rectangular data: a series of equal-sized records. As early as HYDRA and ZBOOK, HEP has required nested data.
 
+\vspace{0.5 cm}
+The nested $\to$ tabular transition is lossy! It must be done as late as possible.
+
+\vspace{0.5 cm}
+\begin{columns}
+\column{0.5\linewidth}
+\includegraphics[width=\linewidth]{muons-as-objects.png}
+
+\column{0.5\linewidth}
+\includegraphics[width=\linewidth]{muons-as-a-table.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Jagged arrays}
+\vspace{0.5 cm}
+uproot required first-order structure just to represent data: jagged arrays.
+
+\vspace{0.5 cm}
+Data must appear to be nested lists of variable-length lists but be managed efficiently by arrays. There are several ways to do this and they can be efficiently derived from ROOT files.
+
+\vspace{0.5 cm}
+Logical structure: \tabto{3.5 cm}{\ttfamily\textcolor{black}{[\textcolor{red}{[}\textcolor{darkblue}{0, 1, 2}], \textcolor{red}{[}], \textcolor{red}{[}\textcolor{darkblue}{3, 4}], \textcolor{red}{[}\textcolor{darkblue}{5, 6, 7, 8}], \textcolor{red}{[}]\ \ \textcolor{red}{]}}}
+
+\vspace{0.05 cm}
+Content:           \tabto{3.5 cm}{\ttfamily\verb|[ |\textcolor{darkblue}{0, 1, 2}\verb|,       |\textcolor{darkblue}{3, 4}\verb|,   |\textcolor{darkblue}{5, 6, 7, 8}\verb|]|}
+
+\vspace{0.05 cm}
+Offsets:           \tabto{3.5 cm}{\ttfamily\verb|[|\textcolor{red}{0,}\verb|         |\textcolor{red}{3,}\verb|  |\textcolor{red}{3,}\verb|      |\textcolor{red}{5,}\verb|            |\textcolor{red}{10, 10}\verb|]|}
+
+\vspace{0.05 cm}
+Parents:           \tabto{3.5 cm}{\ttfamily\verb|[ |\textcolor{darkgreen}{0, 0, 0}\verb|        |\textcolor{purple}{2, 2,}\verb|   |\textcolor{darkorange}{3, 3, 3, 3}\verb|]|}
+
+\vspace{0.5 cm}
+Content $+$ offsets is lossless, compact, and efficient for randomly accessing data.
+
+\vspace{0.25 cm}
+Content $+$ parents $+$ total length is lossless, and it makes reduction operations fast.
+\end{frame}
+
+\begin{frame}{}
+
+\end{frame}
 
 \end{document}
