@@ -428,10 +428,11 @@ The nested $\to$ tabular transition is lossy! It must be done as late as possibl
 \vspace{0.4 cm}
 uproot needed a minimally structured array just to represent data: jagged arrays.
 
-\vspace{0.5 cm}
-Data must appear to be nested lists of variable-length lists but be managed efficiently by arrays. There are several ways to do this and they can be efficiently derived from ROOT files.
+\begin{uncoverenv}<2->
+\vspace{0.3 cm}
+Data must appear to be nested lists of variable-length lists but be managed efficiently by arrays. There are several ways to do this.
 
-\vspace{0.5 cm}
+\vspace{0.3 cm}
 Logical structure: \tabto{3.5 cm}{\ttfamily\textcolor{black}{[\textcolor{red}{[}\textcolor{darkblue}{0, 1, 2}], \textcolor{red}{[}], \textcolor{red}{[}\textcolor{darkblue}{3, 4}], \textcolor{red}{[}\textcolor{darkblue}{5, 6, 7, 8}], \textcolor{red}{[}]\ \ \textcolor{red}{]}}}
 
 \vspace{0.05 cm}
@@ -442,28 +443,33 @@ Offsets:           \tabto{3.5 cm}{\ttfamily\verb|[|\textcolor{red}{0,}\verb|    
 
 \vspace{0.05 cm}
 Parents:           \tabto{3.5 cm}{\ttfamily\verb|[ |\textcolor{darkgreen}{0, 0, 0}\verb|        |\textcolor{purple}{2, 2,}\verb|   |\textcolor{darkorange}{3, 3, 3, 3}\verb|]|}
+\end{uncoverenv}
 
-\vspace{0.5 cm}
+\begin{uncoverenv}<3->
+\vspace{0.3 cm}
 Content $+$ offsets is lossless, compact, and efficient for randomly accessing data.
 
 \vspace{0.1 cm}
 Content $+$ parents $+$ total length is lossless, and it makes reduction operations fast.
+\end{uncoverenv}
 
+\begin{uncoverenv}<4->
 \vspace{0.1 cm}
-Jagged arrays and other primitives can be composed to make any data structure.
+Jagged arrays and other primitives can be composed to make any data structure: the jagged array of {\tt\small TLorentzVector} from the uproot example was built out of jagged tables and mix-in methods.
+\end{uncoverenv}
 \end{frame}
 
 \begin{frame}[fragile]{Array programming: paradigm like object oriented, functional, etc.}
 \vspace{0.15 cm}
-\hfill \includegraphics[height=2.75 cm]{apl-timeline.pdf}
+\hfill \mbox{\includegraphics[height=2.75 cm]{apl-timeline.pdf}\hspace{-0.5 cm}}
 
-\vspace{-2.15 cm}
-{\bf\large Array programming: Matlab/R/Numpy}
+\vspace{-2.3 cm}
+Array programming expresses regular operations \\
+over rectangular data structures in a shorthand \\
+that implicitly loops over elements (i.e.\ hides \\
+the event loop).
 
-\vspace{0.5 cm}
-Expresses regular operations over \\ rectangular data structures in shorthand.
-
-\vspace{0.25 cm}
+\vspace{0.3 cm}
 \begin{itemize}\setlength{\itemsep}{0.15 cm}
 \item Multidimensional slices: \tabto{5.5 cm}{\small \mintinline{python}{rgb_pixels[0, 50:100, ::3]}}
 \item Elementwise operations: \tabto{5.5 cm}{\small \mintinline{python}{all_pz = all_pt * sinh(all_eta)}}
