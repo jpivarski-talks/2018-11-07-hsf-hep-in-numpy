@@ -606,10 +606,23 @@ Below, vectorized-CPU (green) and GPU (red) outperform conventional \\ for-loop 
 \end{center}
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}{Landscape}
+\vspace{0.5 cm}
+In one way, we don't need anything new: Pythonic array operations can run in a batch job like anything else.
 
+\vspace{0.5 cm}
+However, the implicit loop presents an opportunity for transparent multiprocessing: {\tt\small candidates.mass} may be computed for a single particle candidate, an array of millions or a jagged array of billions.
 
+\vspace{0.25 cm}
+\begin{itemize}
+\item {\bf Dask:} accumulates delayed operations and runs them across all cores or across a cluster of ``thousands.'' Under consideration by LSST.
+\item {\bf Joblib:} less fine-grained jobs, dispatching Python functions, not expressions.
+\item {\bf Parsl:} also less fine-grained, integrates with traditional schedulers (Condor, Slurm, GRID); academic project from Chicago, Argonne, and Illinois.
+\item {\bf PySpark:} if a high-speed bridge from Java to Python (through Arrow) is added.
+\end{itemize}
 
+\vspace{0.25 cm}
+I'm still hoping we can work with off-the-shelf solutions; there's a lot to test.
 \end{frame}
 
 
