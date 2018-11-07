@@ -402,8 +402,8 @@ uproot does its one thing well: just I/O. No major updates forseen for {\it read
 \vspace{-2 cm}
 For {\it writing,} however, I plan to continue to work with Pratyush Das \\ (who added histogram-writing as a DIANA-HEP fellow) to add \\ support for writing simple TTrees on a 6--12~month timescale.
 
-\vspace{0.75 cm}
-Small, interacting tools need common protocols. ROOT defines file and C++ protocols; the Scikit-HEP developers are designing in-memory and language-neutral protocols for fit distributions (following SciPy conventions), cost function builders, pseudoexperiments, and histograms (I'm testing Flatbuffers as a wire protocol).
+\vspace{1 cm}
+\uncover<2->{Small, interacting tools need common protocols. ROOT defines file and C++ protocols; the Scikit-HEP developers are designing in-memory and language-neutral protocols for fit distributions (following SciPy conventions), cost function builders, pseudoexperiments, and histograms (I'm testing Flatbuffers as a wire protocol).}
 \end{frame}
 
 \begin{frame}{}
@@ -416,12 +416,12 @@ Small, interacting tools need common protocols. ROOT defines file and C++ protoc
 
 \begin{frame}{HEP datasets are awkward}
 \vspace{0.5 cm}
-Most non-HEP data analysis tools (including ML) require rectangular data: a series of equal-sized records. As early as HYDRA and ZBOOK, HEP has required nested data.
+Most non-HEP data analysis tools (including ML) require rectangular data: a series of equal-sized records. HEP required nested data from the beginning (HYDRA, ZBOOK).
 
-\vspace{0.5 cm}
+\vspace{0.35 cm}
 The nested $\to$ tabular transition is lossy! It must be done as late as possible.
 
-\vspace{0.5 cm}
+\vspace{0.65 cm}
 \begin{columns}
 \column{0.5\linewidth}
 \includegraphics[width=\linewidth]{muons-as-objects.png}
@@ -560,7 +560,9 @@ array([6, 0, 9])
 \end{frame}
 
 \begin{frame}[fragile]{We can even solve problems with combinatorics}
-\vspace{0.35 cm}
+\vspace{0.45 cm}
+\begin{columns}
+\column{1.05\linewidth}
 {\normalsize\bf Procedural HEP:} selecting the ``best'' leptoquark candidate
 
 \scriptsize
@@ -584,11 +586,12 @@ for event in dataset:
 \scriptsize
 \begin{minted}{python}
 pairs = events["jets"].cross(events["leptons"])  # cross-join within events
-goodpairs = pairs[cut(pairs["0"], pairs["1"])]   # to make pairs["0"] and pairs["1"]
-candidates = goodpairs["0"] + goodpairs["1"]     # Lorentz vector + operator
+goodpairs = pairs[cut(pairs["0"], pairs["1"])]   # select from pairs["0"] and pairs["1"]
+candidates = goodpairs["0"] + goodpairs["1"]     # Lorentz vector + operator across all
 best = candidates[quality(candidates).argmax()]  # get objects with the best indexes
 leptoquarks = best.flatten()                     # reduce to flat array
 \end{minted}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Array programming has competitive performance}
