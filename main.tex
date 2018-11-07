@@ -372,15 +372,18 @@ Read it back in ROOT:
 \hfill \includegraphics[width=0.5\linewidth]{root-hist.png}
 \end{frame}
 
-\begin{frame}{Future direction}
+\begin{frame}{Future directions}
 \vspace{0.5 cm}
 
 uproot does its one thing well: just I/O. No major updates forseen for {\it reading,} only bug-fixes and handling corner-case files that users send to me.
 
-\vspace{0.5 cm}
-For {\it writing,} however, I plan to continue to work with Pratyush Das (who added histogram-writing as a DIANA-HEP fellow) to add support for writing simple TTrees on a 6--12~month timescale.
+\vspace{0.75 cm}
+\hfill \includegraphics[height=2 cm]{pratyush.jpg}
 
-\vspace{0.5 cm}
+\vspace{-2 cm}
+For {\it writing,} however, I plan to continue to work with Pratyush Das \\ (who added histogram-writing as a DIANA-HEP fellow) to add \\ support for writing simple TTrees on a 6--12~month timescale.
+
+\vspace{0.75 cm}
 Small, interacting tools need common protocols. ROOT defines file and C++ protocols; the Scikit-HEP developers are designing in-memory and language-neutral protocols for fit distributions (following SciPy conventions), cost function builders, pseudoexperiments, and histograms (I'm testing Flatbuffers for a wire protocol).
 \end{frame}
 
@@ -570,5 +573,44 @@ It isn't just a crutch for slow Python. Efficiency is from SIMD-like data organi
 \vspace{0.4 cm}
 \includegraphics[width=\linewidth]{logscales.pdf}
 \end{frame}
+
+\begin{frame}{Once expressed this way, array operations can be highly optimized}
+\vspace{0.25 cm}
+\hfill \includegraphics[height=2.5 cm]{jaydeep.jpg}
+
+\vspace{-2.5 cm}
+Jaydeep Nandi (GSoC student) developed vectorized implementations of \\ jagged array primitives.
+
+\vspace{0.25 cm}
+Below, vectorized-CPU (green) and GPU (red) outperform conventional \\ for-loop versions of {\tt\small jaggedarray.sum()} and {\tt\small jaggedarray.max()}.
+
+\vspace{0.5 cm}
+\begin{columns}
+\column{0.5\linewidth}
+\mbox{ } \hfill Sum of items in groups \hfill \mbox{ }
+
+\includegraphics[width=\linewidth]{sum_rates_logy.pdf}
+
+\column{0.5\linewidth}
+\mbox{ } \hfill Max of items in groups \hfill \mbox{ }
+
+\includegraphics[width=\linewidth]{max_rates_logy.pdf}
+\end{columns}
+\end{frame}
+
+\begin{frame}{}
+\LARGE
+\vspace{1 cm}
+\begin{center}
+\textcolor{darkblue}{3. Scaling up to PB and thousands of users}
+\end{center}
+\end{frame}
+
+\begin{frame}{}
+
+
+
+\end{frame}
+
 
 \end{document}
