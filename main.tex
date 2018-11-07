@@ -297,13 +297,14 @@ Most feedback is from users who are trying to do analysis without ROOT:
 \vspace{0.4 cm}
 Based on the observation that:
 \begin{itemize}
-\item a Numpy analysis operates on one column of data at a time, and
-\item data in a ROOT file are already arranged in columns.
+\item a Numpy analysis wants data in columnar arrays, and
+\item data in a ROOT file are already arranged as columns: find them and cast them!
 \end{itemize}
 
-\vspace{0.25 cm}
+\vspace{0.2 cm}
 Transforming columnar bytes on disk into event records back into columnar arrays is undesirable extra work. Dropping that step makes up for seeking to the positions of the columnar arrays using slow Python, {\it if the arrays (baskets) are large.}
 
+\vspace{0.1 cm}
 \begin{columns}
 \column{0.5\linewidth}
 \includegraphics[width=\linewidth]{root-none-muon.png}
