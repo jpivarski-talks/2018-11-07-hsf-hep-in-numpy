@@ -81,10 +81,10 @@
 \includegraphics[width=\linewidth]{python-r-cpp-googletrends-machinelearning.png}
 \end{frame}
 
-\begin{frame}{In case we need a ``Motivations'' section}
-\vspace{0.5 cm}
-\includegraphics[width=\linewidth]{root-spark-pandas-google-trends.png}
-\end{frame}
+%% \begin{frame}{In case we need a ``Motivations'' section}
+%% \vspace{0.5 cm}
+%% \includegraphics[width=\linewidth]{root-spark-pandas-google-trends.png}
+%% \end{frame}
 
 \begin{frame}{Stealing from Jake VanderPlas's {\it Unexpected Effectiveness} talk}
 \vspace{0.25 cm}
@@ -94,11 +94,16 @@
 \only<2>{\includegraphics[height=7.8 cm]{shells-2.png}}
 \only<3>{\includegraphics[height=7.8 cm]{shells-3.png}}
 \only<4>{\includegraphics[height=7.8 cm]{shells-4.png}}
-\only<5>{\includegraphics[height=7.8 cm]{shells-5.png}\vspace{0.5 cm}}
+\only<5-6>{\includegraphics[height=7.8 cm]{shells-5.png}\vspace{0.5 cm}}
 
 \column{0.25\linewidth}
 \includegraphics[width=\linewidth]{unreasonable-effectiveness.png}
-\vspace{5.3 cm}
+
+\vspace{0.5 cm}
+\uncover<6>{Searching for packages to do parts of a HEP analysis is eye-opening: you learn what is unique about what we do and what isn't.}
+
+\vspace{-7\baselineskip}
+\vspace{4.8 cm}
 \end{columns}
 \end{frame}
 
@@ -153,7 +158,7 @@ Most astronomy, data science, etc.\ fits one of these cases.
 \begin{center}
 \begin{minipage}{0.75\linewidth}
 \begin{enumerate}\setlength{\itemsep}{1 cm}
-\item HEP software stacks and conventions were developed {\it before} the Numpy ecosystem and have to be retrofitted to communicate easily.
+\item HEP software stacks and conventions were developed {\it before} the Python/Numpy ecosystem and have to be retrofitted to communicate easily.
 
 \item HEP analysis relies heavily on nested data: each event may have a different number of particles.
 
