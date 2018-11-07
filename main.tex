@@ -618,12 +618,32 @@ However, the implicit loop presents an opportunity for transparent multiprocessi
 \item {\bf Dask:} accumulates delayed operations and runs them across all cores or across a cluster of ``thousands.'' Under consideration by LSST.
 \item {\bf Joblib:} less fine-grained jobs, dispatching Python functions, not expressions.
 \item {\bf Parsl:} also less fine-grained, integrates with traditional schedulers (Condor, Slurm, GRID); academic project from Chicago, Argonne, and Illinois.
-\item {\bf PySpark:} if a high-speed bridge from Java to Python (through Arrow) is added.
+\item {\bf PySpark:} if a high-speed bridge from Java to Python (via Arrow) is added.
 \end{itemize}
 
 \vspace{0.25 cm}
-I'm still hoping we can work with off-the-shelf solutions; there's a lot to test.
+I'm still hoping we can use off-the-shelf parts; there's a lot still to test.
 \end{frame}
 
+\begin{frame}{Future directions}
+\large
+\vspace{0.5 cm}
+Much of my upcoming work involves integrating the awkward-array library with industry tools, to make them more usable in HEP applications:
+
+\begin{center}
+\begin{minipage}{0.7\linewidth}
+\begin{itemize}
+\item {\bf Dask} for distributed processing,
+\item {\bf Pandas} for statistics and plotting,
+\item {\bf Numba} for JIT-compilation,
+\item {\bf blosc/bcolz} for transparent compression,
+\item {\bf CuPy} for GPU processing\ldots
+\end{itemize}
+\end{minipage}
+\end{center}
+
+\vspace{0.5 cm}
+I've been involved in a half-dozen attempts to scale up analyses with industry tools, some of them just starting. I think we're going to need to try several approaches at the same time.
+\end{frame}
 
 \end{document}
