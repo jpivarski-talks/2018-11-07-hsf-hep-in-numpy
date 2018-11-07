@@ -690,7 +690,7 @@ I'm still hoping we can use off-the-shelf parts; there's a lot still to test.
 Much of my upcoming work will involve integrating awkward-array with industry tools, to make these tools usable for general HEP data:
 
 \begin{center}
-\begin{minipage}{0.7\linewidth}
+\begin{minipage}{0.55\linewidth}
 \begin{itemize}
 \item {\bf Dask} for distributed processing,
 \item {\bf Pandas} for statistics and plotting,
@@ -701,10 +701,10 @@ Much of my upcoming work will involve integrating awkward-array with industry to
 \end{minipage}
 \end{center}
 
-\uncover<2->{I didn't mention \includegraphics[height=\baselineskip]{histbook-logo.pdf} in this talk because I'm rethinking how histogramming ought to be done, a way to enable projects with different strengths to share histogram objects in memory. This gets generally to common protocols and code reuse, which many of us in Scikit-HEP are considering together.}
+\uncover<2->{I didn't mention \includegraphics[height=\baselineskip]{histbook-logo.pdf} in this talk because I'm rethinking how histogramming ought to be done, such as a protocol to enable projects with different strengths to share histogram objects in memory. This gets generally to common protocols and code reuse, which many of us in Scikit-HEP are considering together.}
 
 \vspace{0.25 cm}
-\uncover<3->{My eventual goal is the query system I've described elsewhere; I see these as prerequisite pieces that are usable even without analysis-as-a-service.}
+\uncover<3->{My eventual goal is the query system I've described elsewhere; I see these as prerequisite pieces that are usable even before analysis-as-a-service is a reality.}
 \end{frame}
 
 \end{document}
