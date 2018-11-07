@@ -318,8 +318,13 @@ Transforming columnar bytes on disk into event records back into columnar arrays
 \vspace{0.5 cm}
 \includegraphics[width=\linewidth]{abstraction-layers.pdf}
 
-\vspace{0.5 cm}
-Pythonic interfaces to objects extracted from ROOT (e.g.\ histograms, Lorentz vectors) have been moved to uproot-methods, to evolve on a different schedule and accept more user-contributed pull requests.
+\begin{uncoverenv}<2->
+\vspace{0.1 cm}
+uproot-methods defines behaviors for objects extracted from ROOT (e.g.\ methods for histograms and Lorentz vectors).
+
+\vspace{0.2 cm}
+It's a separate library so that it can evolve on a different schedule and accept more user-contributed pull requests.
+\end{uncoverenv}
 \end{frame}
 
 \begin{frame}[fragile]{uproot example: reading and manipulating data}
@@ -391,7 +396,7 @@ uproot does its one thing well: just I/O. No major updates forseen for {\it read
 For {\it writing,} however, I plan to continue to work with Pratyush Das \\ (who added histogram-writing as a DIANA-HEP fellow) to add \\ support for writing simple TTrees on a 6--12~month timescale.
 
 \vspace{0.75 cm}
-Small, interacting tools need common protocols. ROOT defines file and C++ protocols; the Scikit-HEP developers are designing in-memory and language-neutral protocols for fit distributions (following SciPy conventions), cost function builders, pseudoexperiments, and histograms (I'm testing Flatbuffers for a wire protocol).
+Small, interacting tools need common protocols. ROOT defines file and C++ protocols; the Scikit-HEP developers are designing in-memory and language-neutral protocols for fit distributions (following SciPy conventions), cost function builders, pseudoexperiments, and histograms (I'm testing Flatbuffers as a wire protocol).
 \end{frame}
 
 \begin{frame}{}
