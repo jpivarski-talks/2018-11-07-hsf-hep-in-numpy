@@ -163,11 +163,11 @@ Astronomy, data science, etc.\ fit these cases better than HEP does.
 \begin{center}
 \begin{minipage}{0.75\linewidth}
 \begin{enumerate}\setlength{\itemsep}{1 cm}
-\item HEP software stacks and conventions were developed {\it before} the Python/Numpy ecosystem and have to be retrofitted to communicate easily.
+\item \textcolor{darkblue}{HEP software stacks and conventions were developed {\it before} the Python/Numpy ecosystem and have to be retrofitted to communicate easily.}
 
-\item HEP analysis relies heavily on nested data: each event may have a different number of particles.
+\item \textcolor{darkblue}{HEP analysis relies heavily on nested data: each event may have a different number of particles.}
 
-\item HEP analysis must be performed on TB of ntuples or PB of centrally produced data with thousands of users hitting the same system/files.
+\item \textcolor{darkblue}{HEP analysis must be performed on TB of ntuples or PB of centrally produced data with thousands of users hitting the same system/files.}
 \end{enumerate}
 \end{minipage}\mbox{\hspace{1 cm}}
 \end{center}
@@ -274,6 +274,7 @@ Then I got a lot of feedback from physicists trying \\ to get their data into ma
 So I pivoted, generalized it (2.x), and presented it \\ as an end-user product.
 
 \vspace{0.35 cm}
+\begin{uncoverenv}<2->
 Most feedback is from users who are trying to do analysis without ROOT:
 
 \vspace{0.05 cm}
@@ -292,6 +293,7 @@ Most feedback is from users who are trying to do analysis without ROOT:
 \vspace{0.25 cm}
 \textcolor{darkgray}{``Thank you for all of your work with this, being able to load root files without ROOT is wonderful!''}
 \end{columns}
+\end{uncoverenv}
 \end{frame}
 
 %% ``So, in my case, the arrays function are equivalent to numpy load to native format. Very impressive!!! Kudos!!!''
