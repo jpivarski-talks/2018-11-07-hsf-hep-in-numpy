@@ -129,7 +129,11 @@
 \vspace{0.5 cm}
 Numpy allowed Python to fill a niche occupied by MATLAB and R: transforming, filtering, signal processing, and machine learning on GB's of rectangular array data.
 
+\vspace{0.5 cm}
+\uncover<2->{That's not exactly HEP.}
+
 \vspace{0.75 cm}
+\begin{uncoverenv}<3->
 \begin{columns}[t]
 \column{0.1\linewidth}
 
@@ -149,7 +153,8 @@ Good for biggish, more regular processing (including ML).
 \end{columns}
 
 \vspace{0.75 cm}
-Most astronomy, data science, etc.\ fits one of these cases.
+Astronomy, data science, etc.\ fit these cases better than HEP does.
+\end{uncoverenv}
 \end{frame}
 
 \begin{frame}{Three surmountable challenges}
@@ -655,28 +660,29 @@ VirtualArray & generates an array upon first access, then caches & $T$ \\
 \end{frame}
 
 \begin{frame}{Landscape}
-\vspace{0.5 cm}
+\vspace{0.35 cm}
 In one way, we don't need anything new: Pythonic array operations can run in a batch job like anything else.
 
-\vspace{0.5 cm}
+\vspace{0.35 cm}
+\begin{uncoverenv}<2->
 However, the implicit loop presents an opportunity for transparent multiprocessing: {\tt\small candidates.mass} may be computed for a single particle candidate, an array of millions or a jagged array of billions.
 
 \vspace{0.25 cm}
 \begin{itemize}
-\item {\bf Dask:} accumulates delayed operations and runs them across all cores or across a cluster of ``thousands.'' Under consideration by LSST.
+\item {\bf Dask:} accumulates delayed operations and runs them across all cores or across a cluster of ``thousands.'' LSST is considering it for astronomer's jobs.
 \item {\bf Joblib:} less fine-grained jobs, dispatching Python functions, not expressions.
-\item {\bf Parsl:} also less fine-grained, integrates with traditional schedulers (Condor, Slurm, GRID); academic project from Chicago, Argonne, and Illinois.
+\item {\bf Parsl:} also less fine-grained, integrates with schedulers (Condor, Slurm, GRID); academic project from Chicago, Argonne, and Illinois.
 \item {\bf PySpark:} if a high-speed bridge from Java to Python (via Arrow) is added.
 \end{itemize}
 
 \vspace{0.25 cm}
 I'm still hoping we can use off-the-shelf parts; there's a lot still to test.
+\end{uncoverenv}
 \end{frame}
 
-\begin{frame}{Future directions}
-\large
-\vspace{0.5 cm}
-Much of my upcoming work involves integrating the awkward-array library with industry tools, to make them more usable in HEP applications:
+\begin{frame}{Conclusions}
+\vspace{0.35 cm}
+Much of my upcoming work will involve integrating awkward-array with industry tools, to make these tools usable for general HEP data:
 
 \begin{center}
 \begin{minipage}{0.7\linewidth}
@@ -690,8 +696,10 @@ Much of my upcoming work involves integrating the awkward-array library with ind
 \end{minipage}
 \end{center}
 
-\vspace{0.5 cm}
-I've been involved in a half-dozen attempts to scale up analyses with industry tools, some of them just starting. I think we're going to need to try several approaches at the same time.
+\uncover<2->{I didn't mention \includegraphics[height=\baselineskip]{histbook-logo.pdf} in this talk because I'm rethinking how histogramming ought to be done, a way to enable projects with different strengths to share histogram objects in memory. This gets generally to common protocols and code reuse, which many of us in Scikit-HEP are considering together.}
+
+\vspace{0.25 cm}
+\uncover<3->{My eventual goal is the query system I've described elsewhere; I see these as prerequisite pieces that are usable even without analysis-as-a-service.}
 \end{frame}
 
 \end{document}
